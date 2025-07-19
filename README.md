@@ -35,7 +35,7 @@ A modern and beginner-friendly handbook for mastering Termux. Designed for mobil
 
 ## 📷 Screenshots
 
-<img src="https://raw.githubusercontent.com/pykinsu/termux-handbook-assets/main/screenshot1.png" alt="Termux Handbook UI" width="100%" />
+<img src="https://envs.sh/bXo.jpeg" alt="Termux Handbook UI" width="100%" />
 <sub><i>✨ Built with a clean UI, collapsible sections, and copy buttons</i></sub>
 
 ---
