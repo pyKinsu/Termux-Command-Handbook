@@ -1,5 +1,13 @@
-# 📘 Termux Handbook
+<p align="center">
+  <a href="https://termux-handbook.vercel.app">
+    <img src="https://envs.sh/bXr.jpg" alt="My Portfolio Logo" style="width:100%; max-width:100%;" />
+  </a>
+</p>
 
+<a id="readme-top"></a>
+
+<h1 align="center"><b>ᴛᴇʀᴍᴜx ʜᴀɴᴅʙᴏᴏᴋ</b></h1>
+<p align="center">
 A modern and beginner-friendly handbook for mastering Termux. Designed for mobile developers, hackers, and Linux enthusiasts who want powerful command-line tools on Android.  
 
 > [![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel&style=flat-square)](https://termux-handbook.vercel.app)
