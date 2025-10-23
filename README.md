@@ -19,8 +19,8 @@ A modern, beginner-friendly handbook for mastering Termux. Designed for Android 
   <a href="https://nextjs.org/">
     <img alt="Built with Next.js" src="https://img.shields.io/badge/Built%20with-Next.js-black?logo=next.js&style=flat-square" />
   </a>
-  <a href="https://github.com/pykinsu/Termux-Handbook">
-    <img alt="Star this repo" src="https://img.shields.io/github/stars/pykinsu/Termux-Handbook?style=social" />
+  <a href="https://github.com/pyKinsu/Termux-Command-Handbook">
+    <img alt="Star this repo" src="https://img.shields.io/github/stars/pyKinsu/Termux-Command-Handbook?style=social" />
   </a>
 </p>
 
