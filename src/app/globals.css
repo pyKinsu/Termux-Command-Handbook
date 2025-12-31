@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ---------- Day Mode Colors ---------- */
+    --background: 0 0% 98%;         /* Almost white */
+    --foreground: 0 0% 8%;          /* Almost black */
+    --card: 0 0% 96%;               /* Light cards */
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 0 0% 8%;
+
+    /* Primary & Accent */
+    --primary: 220 90% 55%;         /* Blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 173 58% 39%;       /* Teal */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 300 70% 50%;          /* Purple */
+    --accent-foreground: 0 0% 100%;
+
+    /* Muted & Destructive */
+    --muted: 0 0% 85%;              /* Light gray */
+    --muted-foreground: 0 0% 35%;
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders, Inputs & Rings */
+    --border: 0 0% 85%;
+    --input: 0 0% 90%;
+    --ring: 220 90% 65%;
+    --radius: 0.5rem;
+
+    /* Chart Colors */
+    --chart-1: 220 90% 55%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 45 70% 55%;
+    --chart-4: 300 70% 50%;
+    --chart-5: 30 80% 60%;
+
+    /* Background Gradient - Day Mode */
+    --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f4ff 100%);
+  }
+
+  .dark {
+    /* ---------- Dark Mode Colors ---------- */
+    --background: 0 0% 0%;          /* Pure black */
+    --foreground: 0 0% 95%;         /* Almost white */
+    --card: 0 0% 6%;                /* Dark cards */
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary & Accent */
+    --primary: 220 90% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 173 58% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 300 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Muted & Destructive */
+    --muted: 0 0% 20%;              /* Dark muted */
+    --muted-foreground: 0 0% 65%;
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders, Inputs & Rings */
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 220 90% 65%;
+
+    /* Chart Colors */
+    --chart-1: 220 90% 55%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 45 70% 55%;
+    --chart-4: 300 70% 50%;
+    --chart-5: 30 80% 60%;
+
+    /* Background Gradient - Dark Mode */
+    --bg-gradient: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+  }
+
+  /* ---------- Global Styles ---------- */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    background-image: var(--bg-gradient);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+  }
+
+  /* Ensure html and body are pure black in dark mode */
+  html.dark,
+  html.dark body {
+    background-color: #000000;
+    background-image: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+  }
+
+  /* ---------- Header Styles ---------- */
+  header {
+    @apply transition-all duration-300;
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--border));
+  }
+
+  /* Day mode header */
+  header {
+    @apply bg-white border-slate-200 shadow-sm;
+  }
+
+  /* Dark mode header */
+  .dark header {
+    @apply bg-black border-slate-800;
+  }
+
+  /* Logo text styling */
+  .logo-primary {
+    @apply font-black text-xl sm:text-2xl transition-colors duration-300;
+    color: hsl(var(--foreground));
+  }
+
+  .logo-secondary {
+    @apply font-bold text-xl sm:text-2xl transition-colors duration-300;
+  }
+
+  /* Day mode logo secondary */
+  .logo-secondary {
+    @apply text-slate-500;
+  }
+
+  /* Dark mode logo secondary */
+  .dark .logo-secondary {
+    @apply text-slate-400;
+  }
+
+  /* ---------- Footer Styles ---------- */
+  footer {
+    @apply transition-all duration-300;
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Day mode footer */
+  footer {
+    @apply bg-slate-50 border-slate-200;
+    color: #666666;
+  }
+
+  /* Dark mode footer */
+  .dark footer {
+    @apply bg-black border-slate-800;
+    color: #999999;
+  }
+
+  footer h3 {
+    @apply transition-colors duration-300;
+    color: hsl(var(--foreground));
+  }
+
+  footer a {
+    @apply transition-colors duration-300;
+  }
+
+  /* Day mode footer links */
+  footer a {
+    @apply text-slate-600 hover:text-slate-900;
+  }
+
+  /* Dark mode footer links */
+  .dark footer a {
+    @apply text-slate-400 hover:text-white;
+  }
+
+  footer a:hover {
+    @apply underline;
+  }
+
+  /* ---------- Section Box Styles ---------- */
+  .section-box {
+    @apply rounded-2xl border p-6 text-center transition-all duration-300;
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-color: hsl(var(--border));
+  }
+
+  /* Day mode section-box */
+  .section-box {
+    @apply border-slate-200 bg-white hover:shadow-md hover:border-slate-300;
+  }
+
+  /* Dark mode section-box */
+  .dark .section-box {
+    @apply border-slate-800 bg-slate-950 hover:border-slate-700;
+  }
+
+  .section-box:hover {
+    @apply scale-[1.03];
+  }
+
+  .section-badge {
+    @apply inline-block rounded-full px-3 py-1 text-sm font-semibold;
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* ---------- How It Works Section ---------- */
+  .step-wrapper {
+    @apply relative flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto gap-12 px-4;
+  }
+
+  .step-box {
+    @apply section-box w-full max-w-sm;
+  }
+
+  .step-icon {
+    @apply w-8 h-8 mx-auto mb-3 transition-colors duration-300;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .step-title {
+    @apply text-base font-semibold mb-1 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500;
+  }
+
+  .step-desc {
+    @apply text-sm transition-colors duration-300;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .step-number {
+    @apply absolute -top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold z-10 transition-colors duration-300;
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+  }
+
+  .connector-horizontal,
+  .connector-vertical {
+    @apply bg-border absolute;
+    animation: line-draw 1s ease-in-out forwards;
+  }
+
+  .connector-horizontal {
+    width: 60px;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 100%;
+  }
+
+  .connector-vertical {
+    width: 2px;
+    height: 60px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @keyframes line-draw {
+    from {
+      transform: scaleX(0) scaleY(0);
+      opacity: 0;
+    }
+    to {
+      transform: scaleX(1) scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  /* ---------- Responsive Typography ---------- */
+  h1 {
+    @apply transition-colors duration-300;
+  }
+
+  h2 {
+    @apply transition-colors duration-300;
+  }
+
+  h3 {
+    @apply transition-colors duration-300;
+  }
+
+  p {
+    @apply transition-colors duration-300;
+  }
+}
