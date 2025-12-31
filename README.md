@@ -68,7 +68,7 @@ A modern, beginner-friendly handbook for mastering Termux. Designed for Android 
 
 - **Q:** Where should I install Termux from?  
   **A:** Only from F-Droid or GitHub. Avoid Play Store versions.  
-  → [Read the install guide](https://termux-handbook.vercel.app/download-termux)
+  → [Read the install guide](https://termux-handbook.vercel.app/How-to-download-termux)
 
 ---
 
