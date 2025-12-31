@@ -1,11 +1,3 @@
-<p align="center">
-  <a href="https://termux-handbook.vercel.app" target="_blank">
-    <img src="https://envs.sh/bXr.jpg" alt="Termux Handbook Logo" style="width:100%; max-width:100%;" />
-  </a>
-</p>
-
-<a id="readme-top"></a>
-
 <h1 align="center"><b>ᴛᴇʀᴍᴜx ʜᴀɴᴅʙᴏᴏᴋ</b></h1>
 
 <p align="center">
