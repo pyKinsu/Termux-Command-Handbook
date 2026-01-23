@@ -99,5 +99,3 @@ If this project helps you, feel free to support development 💛
 </p>
 
 ---
-
-> ⚠️ **Note:** This repository is private. Follow [@pykinsu](https://github.com/pykinsu) for updates and open-source projects.
