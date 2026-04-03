@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, Github, Send } from "lucide-react";
+import { Menu, Github, Send, Twitter } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { externalLinks, siteLinks } from "@/lib/constants";
 import { Separator } from "./ui/separator";
@@ -77,11 +77,11 @@ export function MobileNav({ className }: { className?: string }) {
             <Github className="h-4 w-4" /> GitHub
           </Link>
           <Link
-            href="https://t.me/pykinsu"
+            href="https://x.com/pykinsu"
             target="_blank"
             className="bg-card border border-border px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-muted transition text-sm"
           >
-            <Send className="h-4 w-4" /> Telegram
+            <Twitter className="h-4 w-4" /> Twitter / X
           </Link>
         </div>
       </SheetContent>
