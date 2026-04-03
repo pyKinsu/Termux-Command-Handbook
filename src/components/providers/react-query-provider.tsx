@@ -1,10 +1,7 @@
 "use client";
 
 import React from "react";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-import { isNotFoundError } from "@/lib/http";
 
 const DEFAULT_STALE_TIME = 1000 * 60 * 5; // 5 minutes
 
@@ -20,12 +17,10 @@ export function ReactQueryProvider({
       defaultOptions: {
         queries: {
           staleTime: DEFAULT_STALE_TIME,
-          retry: (failureCount, error) => {
-            const isNotFound = isNotFoundError(error);
-            if (isNotFound) {
+          retry: (failureCount, error: any) => {
+            if (error?.status === 404) {
               return false;
             }
-
             return failureCount < 3;
           },
         },
