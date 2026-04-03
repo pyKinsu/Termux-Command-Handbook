@@ -21,7 +21,7 @@ export const siteLinks: NavLink[] = [
 export const externalLinks: NavLink[] = [
   {
     name: "Star Repository",
-    href: "https://github.com/pykinsu/Termux-HandBook",
+    href: "https://github.com/pyKinsu/Termux-Command-Handbook",
   },
   {
     name: "Creator",
