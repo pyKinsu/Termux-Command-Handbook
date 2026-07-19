@@ -15,7 +15,11 @@ const fontSans = FontSans({
 
 
 export const metadata: Metadata = {
-  title: "Termux Handbook",
+  metadataBase: new URL("https://termux-handbook.vercel.app"),
+  title: {
+    default: "Termux Handbook",
+    template: "%s | Termux Handbook",
+  },
   description:
     "Master Termux on Android with practical command references, automation tips, and hacking techniques.",
 };
