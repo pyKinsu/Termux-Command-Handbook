@@ -1,5 +1,9 @@
 "use client";
 
+import { CategoryJumpNav } from "@/components/CategoryJumpNav";
+import { LessonPagination } from "@/components/LessonPagination";
+import { slugify } from "@/lib/utils";
+
 import { Copy, Check, Package, Volume2, Zap, Camera, Clipboard, Radio, Download, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
@@ -280,7 +284,7 @@ const CategorySection = ({
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="mb-8">
+    <div id={slugify(category)} className="mb-8 scroll-mt-32">
       {/* Category Header - Collapsible */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -310,7 +314,8 @@ const CategorySection = ({
           {commands.map((cmd, idx) => (
             <div
               key={idx}
-              className="group/cmd relative rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 overflow-hidden"
+              id={slugify(`Lesson5-${cmd.title || cmd.command}`)}
+              className="group/cmd relative rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 overflow-hidden scroll-mt-32"
             >
               {/* Gradient accent on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${colorGradient} opacity-0 group-hover/cmd:opacity-5 transition-opacity duration-300`} />
@@ -364,6 +369,8 @@ export default function Lesson5Page(): JSX.Element {
         </div>
       </div>
 
+      <CategoryJumpNav categories={categories} />
+
       {/* Categories Section */}
       <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-6xl mx-auto">
@@ -398,6 +405,11 @@ export default function Lesson5Page(): JSX.Element {
             <li>• Test all commands with appropriate permissions enabled in device settings</li>
           </ul>
         </div>
+      </div>
+
+      {/* Lesson Navigation */}
+      <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 pb-16 sm:pb-20">
+        <LessonPagination currentHref="/Lesson5" />
       </div>
     </div>
   );

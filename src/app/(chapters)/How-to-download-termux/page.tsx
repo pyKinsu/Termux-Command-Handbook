@@ -13,6 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { LessonPagination } from "@/components/LessonPagination";
 
 interface FAQ {
   question: string;
@@ -253,6 +254,11 @@ export default function DownloadTermuxPage(): JSX.Element {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Lesson Navigation */}
+      <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 pb-16 sm:pb-20">
+        <LessonPagination currentHref="/How-to-download-termux" />
       </div>
     </div>
   );
