@@ -291,3 +291,15 @@
     @apply transition-colors duration-300;
   }
 }
+
+@layer utilities {
+  /* Hides the scrollbar while keeping the element scrollable —
+     used by the sticky category jump nav's horizontal pill row. */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}

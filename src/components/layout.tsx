@@ -3,24 +3,28 @@
 import Link from "next/link";
 import { MobileNav } from "./mobile-nav";
 import { ThemeToggle } from "./theme-toggle";
+import { CommandPalette } from "./CommandPalette";
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 text-foreground backdrop-blur-md transition-all duration-300">
-      <nav className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <nav className="grid grid-cols-[auto_1fr_auto] items-center gap-3 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full h-16">
         {/* Left: MobileNav */}
         <MobileNav />
 
         {/* Center: Text Logo */}
-        <Link href="/" className="flex-1 flex justify-center select-none" prefetch={false}>
+        <Link href="/" className="flex justify-center select-none" prefetch={false}>
           <div className="flex items-center gap-2">
             <span className="logo-primary">Termux</span>
             <span className="logo-secondary">Handbook</span>
           </div>
         </Link>
 
-        {/* Right: Theme toggle */}
-        <ThemeToggle />
+        {/* Right: Search + theme toggle */}
+        <div className="flex items-center justify-end gap-2">
+          <CommandPalette />
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
   );

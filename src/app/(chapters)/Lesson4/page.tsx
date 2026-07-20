@@ -1,4 +1,7 @@
 "use client";
+import { CategoryJumpNav } from "@/components/CategoryJumpNav";
+import { LessonPagination } from "@/components/LessonPagination";
+import { slugify } from "@/lib/utils";
 
 import { Copy, Check, Cpu, Camera, MessageSquare, Wifi, Bell, Download, MapPin, Zap } from "lucide-react";
 import { useState } from "react";
@@ -308,6 +311,8 @@ export default function ExpertCommandsPage(): JSX.Element {
         </div>
       </div>
 
+      <CategoryJumpNav categories={categories} />
+
       {/* Categories Section */}
       <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-6xl mx-auto">
@@ -316,7 +321,7 @@ export default function ExpertCommandsPage(): JSX.Element {
             const colorGradient = categoryColors[category];
 
             return (
-              <div key={category} className="mb-16 sm:mb-20">
+              <div key={category} id={slugify(category)} className="mb-16 sm:mb-20 scroll-mt-32">
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-6 sm:mb-8">
                   <div className={`p-3 rounded-xl bg-gradient-to-br ${colorGradient}`}>
@@ -335,7 +340,8 @@ export default function ExpertCommandsPage(): JSX.Element {
                   {commands.map((cmd, idx) => (
                     <div
                       key={idx}
-                      className="group relative rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 overflow-hidden"
+                      id={slugify(`Lesson4-${cmd.title || cmd.command}`)}
+                      className="group relative rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300 overflow-hidden scroll-mt-32"
                     >
                       {/* Gradient accent on hover */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${colorGradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
@@ -386,6 +392,11 @@ export default function ExpertCommandsPage(): JSX.Element {
             <li>• Some features require Termux:API app to be installed for full capability</li>
           </ul>
         </div>
+      </div>
+
+      {/* Lesson Navigation */}
+      <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 pb-16 sm:pb-20">
+        <LessonPagination currentHref="/Lesson4" />
       </div>
     </div>
   );
