@@ -1,6 +1,8 @@
 "use client";
 import { CategoryJumpNav } from "@/components/CategoryJumpNav";
 import { LessonPagination } from "@/components/LessonPagination";
+import { CommandSyntax } from "@/components/CommandSyntax";
+import { TermuxApiBadge } from "@/components/TermuxApiBadge";
 import { slugify } from "@/lib/utils";
 
 import { Copy, Check, Zap, Camera, Phone, MessageSquare, Wifi, Bell, Download, MapPin, Radio } from "lucide-react";
@@ -9,207 +11,245 @@ import { useState } from "react";
 interface Command {
   title: string;
   description: string;
+  command: string;
   category: string;
 }
 
 const advancedCommands: Command[] = [
   // ⚡ Core System
   {
-    title: "termux-api",
+    title: "Termux API",
+    command: "termux-api",
     description: "Access various Android APIs from Termux scripts.",
     category: "Core System",
   },
   {
-    title: "termux-battery-status",
+    title: "Battery Status",
+    command: "termux-battery-status",
     description: "Get battery status including level and health.",
     category: "Core System",
   },
   {
-    title: "termux-info",
+    title: "System Info",
+    command: "termux-info",
     description: "Display general system information.",
     category: "Core System",
   },
   {
-    title: "termux-job-scheduler [options]",
+    title: "Job Scheduler",
+    command: "termux-job-scheduler [options]",
     description: "Schedule background jobs.",
     category: "Core System",
   },
 
   // 📸 Camera & Media
   {
-    title: "termux-camera-info",
+    title: "Camera Info",
+    command: "termux-camera-info",
     description: "Get information about available cameras.",
     category: "Camera & Media",
   },
   {
-    title: "termux-media-player",
+    title: "Media Player",
+    command: "termux-media-player",
     description: "Control audio/video media playback.",
     category: "Camera & Media",
   },
   {
-    title: "termux-media-scan [path]",
+    title: "Media Scan",
+    command: "termux-media-scan [path]",
     description: "Scan for media files at the specified path.",
     category: "Camera & Media",
   },
 
   // 📞 Telephony & SMS
   {
-    title: "termux-call-log",
+    title: "Call Log",
+    command: "termux-call-log",
     description: "View call logs (incoming/outgoing/missed).",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-telephony-cellinfo",
+    title: "Cell Info",
+    command: "termux-telephony-cellinfo",
     description: "Cellular network cell info.",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-telephony-deviceinfo",
+    title: "Device Info",
+    command: "termux-telephony-deviceinfo",
     description: "Device and SIM card info.",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-telephony-imei",
+    title: "IMEI Number",
+    command: "termux-telephony-imei",
     description: "Show device IMEI number.",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-telephony-signalstrength",
+    title: "Signal Strength",
+    command: "termux-telephony-signalstrength",
     description: "Get mobile network signal strength.",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-sms-inbox",
+    title: "SMS Inbox",
+    command: "termux-sms-inbox",
     description: "List received SMS messages.",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-sms-send -n [number] [message]",
+    title: "Send SMS",
+    command: "termux-sms-send -n [number] [message]",
     description: "Send SMS to number.",
     category: "Telephony & SMS",
   },
   {
-    title: "termux-sms-view [message_id]",
+    title: "View SMS",
+    command: "termux-sms-view [message_id]",
     description: "View details of an SMS message.",
     category: "Telephony & SMS",
   },
 
   // 📋 Clipboard & Contacts
   {
-    title: "termux-clipboard-get",
+    title: "Get Clipboard",
+    command: "termux-clipboard-get",
     description: "Get current clipboard contents.",
     category: "Clipboard & Contacts",
   },
   {
-    title: "termux-clipboard-set [text]",
+    title: "Set Clipboard",
+    command: "termux-clipboard-set [text]",
     description: "Set clipboard to specified text.",
     category: "Clipboard & Contacts",
   },
   {
-    title: "termux-contact-list",
+    title: "Contact List",
+    command: "termux-contact-list",
     description: "List all contacts from device.",
     category: "Clipboard & Contacts",
   },
 
   // 🌐 Network & Connectivity
   {
-    title: "termux-wifi-connect [SSID] [password]",
+    title: "Wi-Fi Connect",
+    command: "termux-wifi-connect [SSID] [password]",
     description: "Connect to a Wi-Fi network.",
     category: "Network & Connectivity",
   },
   {
-    title: "termux-wifi-enable [true/false]",
+    title: "Wi-Fi Enable",
+    command: "termux-wifi-enable [true/false]",
     description: "Enable or disable Wi-Fi.",
     category: "Network & Connectivity",
   },
   {
-    title: "termux-wifi-ipinfo",
+    title: "Wi-Fi IP Info",
+    command: "termux-wifi-ipinfo",
     description: "Get current IP address information.",
     category: "Network & Connectivity",
   },
   {
-    title: "termux-wifi-scaninfo",
+    title: "Wi-Fi Scan",
+    command: "termux-wifi-scaninfo",
     description: "Scan and display nearby Wi-Fi networks.",
     category: "Network & Connectivity",
   },
 
   // 🔔 Notifications & Audio
   {
-    title: "termux-notification",
+    title: "Send Notification",
+    command: "termux-notification",
     description: "Send a custom notification.",
     category: "Notifications & Audio",
   },
   {
-    title: "termux-notification-list",
+    title: "List Notifications",
+    command: "termux-notification-list",
     description: "List all active notifications.",
     category: "Notifications & Audio",
   },
   {
-    title: "termux-notification-remove [id]",
+    title: "Remove Notification",
+    command: "termux-notification-remove [id]",
     description: "Remove notification with specific ID.",
     category: "Notifications & Audio",
   },
   {
-    title: "termux-notification-remove-all",
+    title: "Clear Notifications",
+    command: "termux-notification-remove-all",
     description: "Remove all active notifications.",
     category: "Notifications & Audio",
   },
   {
-    title: "termux-tts-speak [text]",
+    title: "Text to Speech",
+    command: "termux-tts-speak [text]",
     description: "Text-to-speech: speak text aloud.",
     category: "Notifications & Audio",
   },
   {
-    title: "termux-volume",
+    title: "Volume Control",
+    command: "termux-volume",
     description: "Control volume level of device streams.",
     category: "Notifications & Audio",
   },
 
   // 📥 File & Content Management
   {
-    title: "termux-download [URL]",
+    title: "Download File",
+    command: "termux-download [URL]",
     description: "Download file from specified URL.",
     category: "File & Content",
   },
   {
-    title: "termux-open [file/path]",
+    title: "Open File",
+    command: "termux-open [file/path]",
     description: "Open file or directory with default app.",
     category: "File & Content",
   },
   {
-    title: "termux-open-url [URL]",
+    title: "Open URL",
+    command: "termux-open-url [URL]",
     description: "Open URL in browser.",
     category: "File & Content",
   },
   {
-    title: "termux-url-opener [URL]",
+    title: "URL Opener",
+    command: "termux-url-opener [URL]",
     description: "Open URL using default handler.",
     category: "File & Content",
   },
   {
-    title: "termux-share",
+    title: "Share Content",
+    command: "termux-share",
     description: "Share file or content via Android share menu.",
     category: "File & Content",
   },
   {
-    title: "termux-wallpaper [file]",
+    title: "Set Wallpaper",
+    command: "termux-wallpaper [file]",
     description: "Set the wallpaper to the given image.",
     category: "File & Content",
   },
 
   // 🎛️ Advanced & Hardware
   {
-    title: "termux-location",
+    title: "Get Location",
+    command: "termux-location",
     description: "Get current device location using GPS/network.",
     category: "Advanced & Hardware",
   },
   {
-    title: "termux-infrared-transmit [frequency] [pattern]",
+    title: "Infrared Transmit",
+    command: "termux-infrared-transmit [frequency] [pattern]",
     description: "Send IR signals.",
     category: "Advanced & Hardware",
   },
   {
-    title: "termux-dialog",
+    title: "Show Dialog",
+    command: "termux-dialog",
     description: "Show custom interactive dialog boxes.",
     category: "Advanced & Hardware",
   },
@@ -318,11 +358,13 @@ export default function Lesson3Page(): JSX.Element {
                       <div className="relative p-5 sm:p-6 flex flex-col h-full gap-3">
                         {/* Title and Copy Button */}
                         <div className="flex items-start justify-between gap-3">
-                          <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors flex-1 font-mono">
+                          <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors flex-1">
                             {cmd.title}
                           </h3>
-                          <CopyButton text={cmd.title} />
+                          <CopyButton text={cmd.command} />
                         </div>
+
+                        <TermuxApiBadge command={cmd.command} />
 
                         {/* Description */}
                         <p className="text-sm text-muted-foreground">
@@ -333,7 +375,7 @@ export default function Lesson3Page(): JSX.Element {
                         <div className="mt-auto pt-3 border-t border-border">
                           <div className="bg-background border border-border rounded-lg p-3 font-mono text-xs sm:text-sm text-primary overflow-x-auto">
                             <span className="text-muted-foreground">$ </span>
-                            {cmd.title}
+                            <CommandSyntax command={cmd.command} />
                           </div>
                         </div>
                       </div>
