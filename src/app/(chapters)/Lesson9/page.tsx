@@ -1,4 +1,6 @@
 "use client";
+import { CommandSyntax } from "@/components/CommandSyntax";
+import { TermuxApiBadge } from "@/components/TermuxApiBadge";
 import { CategoryJumpNav } from "@/components/CategoryJumpNav";
 import { LessonPagination } from "@/components/LessonPagination";
 import { slugify } from "@/lib/utils";
@@ -288,6 +290,8 @@ export default function Lesson9Page(): JSX.Element {
 
                       {/* Content */}
                       <div className="relative p-5 sm:p-6 flex flex-col h-full gap-3">
+                        <TermuxApiBadge command={cmd.command} />
+
                         {/* Description */}
                         <p className="text-sm text-muted-foreground">
                           {cmd.description}
@@ -298,7 +302,7 @@ export default function Lesson9Page(): JSX.Element {
                           <div className="flex items-center justify-between gap-3">
                             <div className="bg-background border border-border rounded-lg p-3 font-mono text-xs sm:text-sm text-primary overflow-x-auto flex-1">
                               <span className="text-muted-foreground">$ </span>
-                              {cmd.command}
+                              <CommandSyntax command={cmd.command} />
                             </div>
                             <CopyButton text={cmd.command} />
                           </div>

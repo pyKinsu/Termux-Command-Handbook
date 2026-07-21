@@ -1,4 +1,6 @@
 "use client";
+import { CommandSyntax } from "@/components/CommandSyntax";
+import { TermuxApiBadge } from "@/components/TermuxApiBadge";
 import { CategoryJumpNav } from "@/components/CategoryJumpNav";
 import { LessonPagination } from "@/components/LessonPagination";
 import { slugify } from "@/lib/utils";
@@ -226,6 +228,8 @@ export default function Lesson6Page(): JSX.Element {
                           <CopyButton text={cmd.command} />
                         </div>
 
+                        <TermuxApiBadge command={cmd.command} />
+
                         {/* Description */}
                         <p className="text-sm text-muted-foreground">
                           {cmd.description}
@@ -235,7 +239,7 @@ export default function Lesson6Page(): JSX.Element {
                         <div className="mt-auto pt-3 border-t border-border">
                           <div className="bg-background border border-border rounded-lg p-3 font-mono text-xs sm:text-sm text-primary overflow-x-auto">
                             <span className="text-muted-foreground">$ </span>
-                            {cmd.command}
+                            <CommandSyntax command={cmd.command} />
                           </div>
                         </div>
                       </div>

@@ -2,6 +2,8 @@
 
 import { CategoryJumpNav } from "@/components/CategoryJumpNav";
 import { LessonPagination } from "@/components/LessonPagination";
+import { CommandSyntax } from "@/components/CommandSyntax";
+import { TermuxApiBadge } from "@/components/TermuxApiBadge";
 import { slugify } from "@/lib/utils";
 
 import { Copy, Check, Package, Volume2, Zap, Camera, Clipboard, Radio, Download, ChevronDown, ChevronUp } from "lucide-react";
@@ -330,6 +332,8 @@ const CategorySection = ({
                   <CopyButton text={cmd.command} />
                 </div>
 
+                <TermuxApiBadge command={cmd.command} />
+
                 {/* Description */}
                 <p className="text-sm text-muted-foreground">
                   {cmd.description}
@@ -339,7 +343,7 @@ const CategorySection = ({
                 <div className="mt-auto pt-3 border-t border-border">
                   <div className="bg-background border border-border rounded-lg p-3 font-mono text-xs sm:text-sm text-primary overflow-x-auto">
                     <span className="text-muted-foreground">$ </span>
-                    {cmd.command}
+                    <CommandSyntax command={cmd.command} />
                   </div>
                 </div>
               </div>
